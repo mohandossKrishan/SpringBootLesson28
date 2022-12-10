@@ -227,11 +227,13 @@ public class UserControllerTest {
 	@Test
 	public void postUser_whenAnotherUserHasSameUsername_receiveBadRequest() {
 		userRepository.save(createValidUser());
+		
 		User user = createValidUser();
 		ResponseEntity<Object> response = postSignup(user,Object.class);
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
 		
 	}
+	
 	public <T> ResponseEntity<T> postSignup(Object request, Class<T> response) {
 		return testRestTemplate.postForEntity(API_1_0_USERS, request, response);
 	}
