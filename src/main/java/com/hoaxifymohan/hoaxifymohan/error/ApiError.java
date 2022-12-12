@@ -3,12 +3,14 @@ package com.hoaxifymohan.hoaxifymohan.error;
 import java.util.Date;
 import java.util.Map;
 
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 public class ApiError {
+	//@JsonDeserialize(using = CustomDateDeserializer.class)
 	private long timestamp = new Date().getTime();
 
 	private int status;
@@ -25,3 +27,4 @@ public class ApiError {
 		this.url = url;
 	}
 }
+

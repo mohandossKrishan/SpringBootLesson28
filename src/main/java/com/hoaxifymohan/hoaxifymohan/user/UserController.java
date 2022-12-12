@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hoaxifymohan.hoaxifymohan.error.ApiError;
 import com.hoaxifymohan.hoaxifymohan.shared.GenericResponse;
+
 @RestController
 public class UserController {
 
@@ -29,6 +30,9 @@ public class UserController {
 	@PostMapping("/api/1.0/users")
 	GenericResponse createUser(@Valid @RequestBody User user) {
 		
+		//if(user.getUsername()==null || user.getDisplayName()==null || user.getPassword()==null) {
+			//throw new UserNotValidExpection();
+		//}
 		userService.save(user);
 		return new GenericResponse("User Saved");
 	}
@@ -48,7 +52,4 @@ public class UserController {
 		apiError.setValidationErrors(validationErrors);
 		return apiError;
 	}
-
-
-	
 }

@@ -17,7 +17,11 @@ public class UserService {
 	}
 
 	public User save(User user) {
-		// check if we have user in the db with this username
+		//User inDB = userRepository.findByUsername(user.getUsername());
+		//if(inDB !=null) {
+			//throw new DuplicateUsernameExpection();
+		//}
+		
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		return userRepository.save(user);
 	}

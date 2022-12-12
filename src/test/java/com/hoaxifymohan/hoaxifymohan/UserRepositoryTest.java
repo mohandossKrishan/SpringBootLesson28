@@ -19,24 +19,30 @@ import com.hoaxifymohan.hoaxifymohan.user.UserRepository;
 public class UserRepositoryTest {
 
 	@Autowired
-	TestEntityManager  testEntityManager;
-	
+	TestEntityManager testEntityManager;
+
 	@Autowired
 	UserRepository userRepository;
-	
+
 	@Test
 	public void findByUsername_whenUserExists_returnsUser() {
 		User user = new User();
-		
+
 		user.setUsername("test-user");
 		user.setDisplayName("test-display");
 		user.setPassword("P4ssword");
-		
+
 		testEntityManager.persist(user);
-		
+
 		User inDB = userRepository.findByUsername("test-user");
 		assertThat(inDB).isNotNull();
+
 	}
-	
-	
+
+	@Test
+	public void findByUsername_whenUserDoesNotExist_returnsNull() {
+		User inDB = userRepository.findByUsername("nonexistinguser");
+		assertThat(inDB).isNull();
+	}
+
 }
